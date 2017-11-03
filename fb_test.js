@@ -15,3 +15,4 @@ function checkLoginState() {
     statusChangeCallback(response);
   });
 }
+
