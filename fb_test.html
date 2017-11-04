@@ -43,6 +43,12 @@
         }
     }
 
+
+    function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
+    }
     // FB Logout Function
     function logout() {
         FB.logout(function(response) {
