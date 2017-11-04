@@ -5,10 +5,10 @@
     <title>Facebook Login JavaScript Example</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
 </head>
 
 <body>
+    <!-- Start FB Login Code -->
     <script>
     window.fbAsyncInit = function() {
         FB.init({
@@ -49,26 +49,24 @@
             statusChangeCallback(response);
         });
     }
+// FB Logout Function
+    function logout() {
+        FB.logout(function(response) {
 
-function logout() {
-  FB.logout(function(response){
-
-  })
-}
-
+        })
+    }
     </script>
+    
+    <!-- FB Logout Function -->
     <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
     </fb:login-button>
-
-    <div
-  class="fb-like"
-  data-share="true"
-  data-width="450"
-  data-show-faces="true">
-</div>
-
-<button type="button" class="btn btn-primary">Logout</button>
-
+    
+    <!-- FB like and share buttons -->
+    <div class="fb-like" data-share="true" data-width="450" data-show-faces="true">
+    </div>
+    <!-- End FB Login Code -->
+    <!-- Logout Button -->
+    <button type="button" class="btn btn-primary">Logout</button>
 </body>
 
 </html>
