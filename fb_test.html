@@ -43,28 +43,17 @@
         }
     }
 
-
-    // function checkLoginState() {
-    //     FB.getLoginStatus(function(response) {
-    //         statusChangeCallback(response);
-    //     });
-    // }
-// FB Logout Function
+    // FB Logout Function
     function logout() {
         FB.logout(function(response) {
-          checkLoginState()
-          console.log("loging func fired")
+            checkLoginState()
+            console.log("loging func fired")
         })
     }
-
-
-
     </script>
-    
     <!-- FB Logout Function -->
     <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
     </fb:login-button>
-    
     <!-- FB like and share buttons -->
     <div class="fb-like" data-share="true" data-width="450" data-show-faces="true">
     </div>
