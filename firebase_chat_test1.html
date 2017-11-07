@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>firebase chat test with firebase facebook auth</title>
+<!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+  <!-- jQuery *NOTE* Bootstrap JS uses jQuery so this needs to be before bootstrap.min.js -->
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous">
+  </script>
+
+  <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+
+
+  <style>
+    #chat-box {
+      height: 200px;
+      width: 200px;
+      margin: 0 auto;
+      overflow: auto;
+    }
+
+    #message-form {display: none;} /* hides message form initally*/
+
+  </style>
+
+
+</head>
+
+<body>
+  <header class="text-center">
+    <h1 id="main-header">Firebase Chat Room</h1>
+  </header>
+
+
+  <div class="container text-center">
+    
+    <!-- this is where our messages will be displayed -->
+    <div class="row text-center">
+      <div class="col-md-offset-3 col-md-6">
+        <div id="chat-box" class="text-left well"></div>
+      </div>
+    </div>
+
+    <br>
+      
+    <!-- form to input our user name -->
+    <form id="name-form">
+      <input type="text" placeholder="Enter Name" id="name-input">
+      <button id="name-submit">Submit</button>
+    </form>
+
+    <!-- form to input our messages -->
+    <form id="message-form">
+      <input type="text" placeholder="Enter message" id="message-input">
+      <button id="message-submit">Send</button>
+    </form>
+    
+
+  </div>
+
+<script>
+console.log("firebase_chat_app.js loaded");
+
+// Initialize Firebase
+// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCnD00DCXAEUzyEJQVNwA7yI7G5OUstYHs",
+    authDomain: "chat-test-56e7c.firebaseapp.com",
+    databaseURL: "https://chat-test-56e7c.firebaseio.com",
+    projectId: "chat-test-56e7c",
+    storageBucket: "chat-test-56e7c.appspot.com",
+    messagingSenderId: "1003382859041"
+  };
+  firebase.initializeApp(config);
+
+var database = firebase.database();
+var chatData = database.ref("/chat");
+var username = "Guest";
+
+
+// name-submit on click.
+$('#name-submit').on("click", function(event){
+  event.preventDefault();
+  
+  username = $("#name-input").val().trim();
+
+  console.log("username:", username);
+  
+  $('#name-form').hide(); // hide name form
+  $('#message-form').css("display", "initial");// shows message form
+ 
+});
+
+
+//message-sumbit on click 
+$('#message-submit').on("click", function(event){
+  
+  event.preventDefault();
+  var message = $("#message-input").val().trim(); 
+  
+  $("#message-input").val('');// clears out message input box
+
+  // this creates an object with our data to push up to firebase
+  var messageObj = {
+    name: username,
+    message: message,
+    time: firebase.database.ServerValue.TIMESTAMP
+  };
+
+  console.log(messageObj);
+
+  chatData.push(messageObj);
+
+});
+
+
+// Update chat on screen when new message detected - ordered by 'time' value
+chatData.orderByChild("time").on("child_added", function(snapshot) {
+
+  $("#chat-box").append("<p>" + snapshot.val().name + "> " + snapshot.val().message + "</p>"); 
+
+  // Keeps div scrolled to bottom on each update.
+  $("#chat-box").scrollTop($("#chat-box")[0].scrollHeight);
+
+});
+</script>
+
+<script src="firebase-chat-app.js"></script>
+</body>
+</html>
