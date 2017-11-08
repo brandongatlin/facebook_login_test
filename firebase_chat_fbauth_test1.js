@@ -1,4 +1,4 @@
-var a = 7
+var a = 8
 var b = 0
 
 console.log(a + b); //3 = true
@@ -21,7 +21,6 @@ var loginData = database.ref("/login");
 
 var provider = new firebase.auth.FacebookAuthProvider();
 
-var displayName = result.user.displayName
 
 // firebase.auth().signInWithRedirect(provider);
 
@@ -31,8 +30,10 @@ firebase.auth().getRedirectResult().then(function(result) {
         var token = result.credential.accessToken;
         // ...
         console.log(token)
+        var displayName = result.user.displayName
 
-        console.log(result.user.displayName)
+        console.log(displayName)
+
     }
     // The signed-in user info.
     var user = result.user;
@@ -51,6 +52,8 @@ firebase.auth().getRedirectResult().then(function(result) {
     // ...
 });
 
+
+
 // firebase.auth().signOut().then(function() {
 //     // Sign-out successful.
 // }).catch(function(error) {
@@ -61,13 +64,13 @@ $("#login").on("click", function() {
     firebase.auth().signInWithRedirect(provider);
 
     var loginObj = {
-    name: displayName,
-    time: firebase.database.ServerValue.TIMESTAMP
-  };
+        name: displayName,
+        time: firebase.database.ServerValue.TIMESTAMP
+    };
 
-  console.log(loginObj);
+    console.log(loginObj);
 
-  loginData.push(loginObj);
+    loginData.push(loginObj);
 
 });
 
