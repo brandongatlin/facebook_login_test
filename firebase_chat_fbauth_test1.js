@@ -1,4 +1,4 @@
-var a = 8
+var a = 9
 var b = 0
 
 console.log(a + b); //3 = true
@@ -34,6 +34,15 @@ firebase.auth().getRedirectResult().then(function(result) {
 
         console.log(displayName)
 
+        var loginObj = {
+        name: displayName,
+        time: firebase.database.ServerValue.TIMESTAMP
+    };
+
+    console.log(loginObj);
+
+    loginData.push(loginObj);
+
     }
     // The signed-in user info.
     var user = result.user;
@@ -63,14 +72,7 @@ firebase.auth().getRedirectResult().then(function(result) {
 $("#login").on("click", function() {
     firebase.auth().signInWithRedirect(provider);
 
-    var loginObj = {
-        name: displayName,
-        time: firebase.database.ServerValue.TIMESTAMP
-    };
-
-    console.log(loginObj);
-
-    loginData.push(loginObj);
+    
 
 });
 
