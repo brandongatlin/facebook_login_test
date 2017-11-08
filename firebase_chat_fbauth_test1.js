@@ -1,4 +1,4 @@
-var a = 11
+var a = 12
 var b = 0
 
 console.log(a + b); //3 = true
@@ -86,4 +86,4 @@ $("#logout").on("click", function() {
 });
 
 //write display name to chatbox
-$("#").
+// $("#").
