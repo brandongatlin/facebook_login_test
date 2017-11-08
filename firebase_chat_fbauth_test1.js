@@ -1,7 +1,7 @@
-// var a = 1
-// var b = 10 
+var a = 1
+var b = 11 
 
-// console.log(a+b); //3 = true
+console.log(a+b); //3 = true
 
 //console.log("firebase_chat_app.js super loaded");
 
