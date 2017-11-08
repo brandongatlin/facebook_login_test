@@ -1,4 +1,4 @@
-var a = 12
+var a = 13
 var b = 0
 
 console.log(a + b); //3 = true
@@ -37,6 +37,8 @@ firebase.auth().getRedirectResult().then(function(result) {
         var loginObj = {
         name: displayName,
         time: firebase.database.ServerValue.TIMESTAMP
+
+        console.log("connected to Facebook")
     };
 
     console.log(loginObj);
