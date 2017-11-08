@@ -1,4 +1,4 @@
-var a = 10
+var a = 11
 var b = 0
 
 console.log(a + b); //3 = true
@@ -71,6 +71,7 @@ firebase.auth().getRedirectResult().then(function(result) {
 
 $("#login").on("click", function() {
     firebase.auth().signInWithRedirect(provider);
+    $("#displayNameTest").append(displayName)
 
     
 
@@ -83,3 +84,6 @@ $("#logout").on("click", function() {
         // An error happened.
     })
 });
+
+//write display name to chatbox
+$("#").
