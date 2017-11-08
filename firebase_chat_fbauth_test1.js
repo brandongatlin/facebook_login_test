@@ -1,4 +1,4 @@
-var a = 9
+var a = 10
 var b = 0
 
 console.log(a + b); //3 = true
@@ -20,7 +20,7 @@ var database = firebase.database();
 var loginData = database.ref("/login");
 
 var provider = new firebase.auth.FacebookAuthProvider();
-
+var displayName = ""
 
 // firebase.auth().signInWithRedirect(provider);
 
@@ -30,7 +30,7 @@ firebase.auth().getRedirectResult().then(function(result) {
         var token = result.credential.accessToken;
         // ...
         console.log(token)
-        var displayName = result.user.displayName
+        displayName = result.user.displayName
 
         console.log(displayName)
 
