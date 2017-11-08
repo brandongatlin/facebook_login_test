@@ -28,10 +28,11 @@ firebase.auth().getRedirectResult().then(function(result) {
     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
     var token = result.credential.accessToken;
     // ...
-    console.log(token)
+    console.log(result)
   }
   // The signed-in user info.
   var user = result.user;
+  console.log(user)
 }).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
@@ -41,7 +42,7 @@ firebase.auth().getRedirectResult().then(function(result) {
   // The firebase.auth.AuthCredential type that was used.
   var credential = error.credential;
   console.log("error code: " + errorCode)
-    console.log("error message: " + errorMessage)
+  console.log("error message: " + errorMessage)
 
   // ...
 });
