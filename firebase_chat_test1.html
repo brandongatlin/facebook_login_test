@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
 <head>
-	<title>firebase chat test with firebase facebook auth</title>
-<!-- Latest compiled and minified CSS -->
+  <meta charset="UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>Firebase Chat Room </title>
+  
+  <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
 
   <!-- jQuery *NOTE* Bootstrap JS uses jQuery so this needs to be before bootstrap.min.js -->
   <script
@@ -13,9 +17,9 @@
     crossorigin="anonymous">
   </script>
 
-  <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
 
-
+<!-- Chat HTML -->
   <style>
     #chat-box {
       height: 200px;
@@ -63,91 +67,7 @@
 
   </div>
 
-<script>
 
-// Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCnD00DCXAEUzyEJQVNwA7yI7G5OUstYHs",
-    authDomain: "chat-test-56e7c.firebaseapp.com",
-    databaseURL: "https://chat-test-56e7c.firebaseio.com",
-    projectId: "chat-test-56e7c",
-    storageBucket: "chat-test-56e7c.appspot.com",
-    messagingSenderId: "1003382859041"
-  };
-  firebase.initializeApp(config);
-
-var database = firebase.database();
-var chatData = database.ref("/chat");
-var username = "Guest";
-
-//fb auth info
-var provider = new firebase.auth.FacebookAuthProvider();
-
-firebase.auth().signInWithPopup(provider).then(function(result) {
-  // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-  var token = result.credential.accessToken;
-  // The signed-in user info.
-  var user = result.user;
-  // ...
-}).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // The email of the user's account used.
-  var email = error.email;
-  // The firebase.auth.AuthCredential type that was used.
-  var credential = error.credential;
-  // ...
-});
-
-
-// name-submit on click.
-$('#name-submit').on("click", function(event){
-  event.preventDefault();
-  
-  username = $("#name-input").val().trim();
-
-  console.log("username:", username);
-  
-  $('#name-form').hide(); // hide name form
-  $('#message-form').css("display", "initial");// shows message form
- 
-});
-
-
-//message-sumbit on click 
-$('#message-submit').on("click", function(event){
-  
-  event.preventDefault();
-  var message = $("#message-input").val().trim(); 
-  
-  $("#message-input").val('');// clears out message input box
-
-  // this creates an object with our data to push up to firebase
-  var messageObj = {
-    name: username,
-    message: message,
-    time: firebase.database.ServerValue.TIMESTAMP
-  };
-
-  console.log(messageObj);
-
-  chatData.push(messageObj);
-
-});
-
-
-// Update chat on screen when new message detected - ordered by 'time' value
-chatData.orderByChild("time").on("child_added", function(snapshot) {
-
-  $("#chat-box").append("<p>" + snapshot.val().name + "> " + snapshot.val().message + "</p>"); 
-
-  // Keeps div scrolled to bottom on each update.
-  $("#chat-box").scrollTop($("#chat-box")[0].scrollHeight);
-
-});
-</script>
-
-<!-- <script src="firebase-chat-app.js"></script> -->
+<script src="firebase_chat_test1.js"></script>
 </body>
 </html>
