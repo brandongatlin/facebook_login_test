@@ -1,5 +1,5 @@
 var a = 1
-var b = 5
+var b = 7 
 
 console.log(a+b); //3 = true
 
@@ -21,12 +21,14 @@ var loginData = database.ref("/logins");
 
 var provider = new firebase.auth.FacebookAuthProvider();
 
-firebase.auth().signInWithPopup(provider).then(function(result) {
-  // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-  var token = result.credential.accessToken;
+firebase.auth().getRedirectResult().then(function(result) {
+  if (result.credential) {
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    var token = result.credential.accessToken;
+    // ...
+  }
   // The signed-in user info.
   var user = result.user;
-  // ...
 }).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
