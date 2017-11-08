@@ -1,4 +1,4 @@
-var a = 5
+var a = 6
 var b = 0
 
 console.log(a + b); //3 = true
@@ -28,7 +28,7 @@ firebase.auth().getRedirectResult().then(function(result) {
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
         var token = result.credential.accessToken;
         // ...
-        console.log(result)
+        console.log(result.user.displayName)
     }
     // The signed-in user info.
     var user = result.user;
