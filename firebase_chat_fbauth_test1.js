@@ -1,5 +1,5 @@
 var a = 1
-var b = 11 
+var b = 0 
 
 console.log(a+b); //3 = true
 
