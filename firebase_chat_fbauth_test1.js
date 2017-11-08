@@ -1,4 +1,4 @@
-var a = 2
+var a = 3
 var b = 0
 
 console.log(a + b); //3 = true
@@ -55,5 +55,11 @@ firebase.auth().signOut().then(function() {
 
 $("#login").on("click", function() {
     firebase.auth().signInWithRedirect(provider);
+
+})
+
+$("#logout").on("click", function() {
+    firebase.auth().signOut().then(function() {
+;
 
 })
