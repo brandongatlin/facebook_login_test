@@ -1,7 +1,7 @@
-var a = 1
-var b = 0 
+var a = 2
+var b = 0
 
-console.log(a+b); //3 = true
+console.log(a + b); //3 = true
 
 //console.log("firebase_chat_app.js super loaded");
 
@@ -13,49 +13,47 @@ var config = {
     projectId: "chat-test-56e7c",
     storageBucket: "chat-test-56e7c.appspot.com",
     messagingSenderId: "1003382859041"
-  };
-  firebase.initializeApp(config);
+};
+firebase.initializeApp(config);
 
 var database = firebase.database();
-var loginData = database.ref("/logins");
+var loginData = database.ref();
 
 var provider = new firebase.auth.FacebookAuthProvider();
 
 // firebase.auth().signInWithRedirect(provider);
 
 firebase.auth().getRedirectResult().then(function(result) {
-  if (result.credential) {
-    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-    var token = result.credential.accessToken;
-    // ...
-    console.log(result)
-  }
-  // The signed-in user info.
-  var user = result.user;
-  console.log(user)
+    if (result.credential) {
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        var token = result.credential.accessToken;
+        // ...
+        console.log(result)
+    }
+    // The signed-in user info.
+    var user = result.user;
+    console.log(user)
 }).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // The email of the user's account used.
-  var email = error.email;
-  // The firebase.auth.AuthCredential type that was used.
-  var credential = error.credential;
-  console.log("error code: " + errorCode)
-  console.log("error message: " + errorMessage)
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    console.log("error code: " + errorCode)
+    console.log("error message: " + errorMessage)
 
-  // ...
+    // ...
 });
 
 firebase.auth().signOut().then(function() {
-  // Sign-out successful.
+    // Sign-out successful.
 }).catch(function(error) {
-  // An error happened.
+    // An error happened.
 });
 
 $("#login").on("click", function() {
-	firebase.auth().signInWithRedirect(provider);
+    firebase.auth().signInWithRedirect(provider);
 
 })
-
-
