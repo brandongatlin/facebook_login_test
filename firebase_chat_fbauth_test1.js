@@ -3,7 +3,7 @@ var b = 4
 
 console.log(a+b); //3 = true
 
-console.log("firebase_chat_app.js loaded");
+console.log("firebase_chat_app.js super loaded");
 
 // Initialize Firebase
 var config = {
