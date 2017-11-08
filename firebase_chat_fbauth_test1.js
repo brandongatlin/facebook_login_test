@@ -1,4 +1,4 @@
-var a = 6
+var a = 7
 var b = 0
 
 console.log(a + b); //3 = true
@@ -17,7 +17,7 @@ var config = {
 firebase.initializeApp(config);
 
 var database = firebase.database();
-var loginData = database.ref();
+var loginData = database.ref("/login");
 
 var provider = new firebase.auth.FacebookAuthProvider();
 
@@ -28,6 +28,8 @@ firebase.auth().getRedirectResult().then(function(result) {
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
         var token = result.credential.accessToken;
         // ...
+        console.log(token)
+
         console.log(result.user.displayName)
     }
     // The signed-in user info.
@@ -59,9 +61,9 @@ $("#login").on("click", function() {
 })
 
 $("#logout").on("click", function() {
-            firebase.auth().signOut().then(function() {
-                // Sign-out successful.
-            }).catch(function(error) {
-                // An error happened.
-            })
-        });
+    firebase.auth().signOut().then(function() {
+        // Sign-out successful.
+    }).catch(function(error) {
+        // An error happened.
+    })
+});
