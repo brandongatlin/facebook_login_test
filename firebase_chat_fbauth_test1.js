@@ -1,4 +1,4 @@
-var a = 3
+var a = 4
 var b = 0
 
 console.log(a + b); //3 = true
@@ -47,11 +47,11 @@ firebase.auth().getRedirectResult().then(function(result) {
     // ...
 });
 
-firebase.auth().signOut().then(function() {
-    // Sign-out successful.
-}).catch(function(error) {
-    // An error happened.
-});
+// firebase.auth().signOut().then(function() {
+//     // Sign-out successful.
+// }).catch(function(error) {
+//     // An error happened.
+// });
 
 $("#login").on("click", function() {
     firebase.auth().signInWithRedirect(provider);
@@ -59,7 +59,9 @@ $("#login").on("click", function() {
 })
 
 $("#logout").on("click", function() {
-    firebase.auth().signOut().then(function() {
-;
-
-})
+            firebase.auth().signOut().then(function() {
+                // Sign-out successful.
+            }).catch(function(error) {
+                // An error happened.
+            })
+        });
