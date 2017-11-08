@@ -33,12 +33,13 @@ firebase.auth().getRedirectResult().then(function(result) {
         displayName = result.user.displayName
 
         console.log(displayName)
+                console.log("connected to Facebook")
+
 
         var loginObj = {
         name: displayName,
         time: firebase.database.ServerValue.TIMESTAMP
 
-        console.log("connected to Facebook")
     };
 
     console.log(loginObj);
