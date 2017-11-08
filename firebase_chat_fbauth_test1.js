@@ -1,5 +1,5 @@
 var a = 1
-var b = 9 
+var b = 10 
 
 console.log(a+b); //3 = true
 
@@ -20,6 +20,8 @@ var database = firebase.database();
 var loginData = database.ref("/logins");
 
 var provider = new firebase.auth.FacebookAuthProvider();
+
+firebase.auth().signInWithRedirect(provider);
 
 firebase.auth().getRedirectResult().then(function(result) {
   if (result.credential) {
