@@ -21,6 +21,8 @@ var loginData = database.ref("/login");
 
 var provider = new firebase.auth.FacebookAuthProvider();
 
+var displayName = result.user.displayName
+
 // firebase.auth().signInWithRedirect(provider);
 
 firebase.auth().getRedirectResult().then(function(result) {
@@ -58,7 +60,16 @@ firebase.auth().getRedirectResult().then(function(result) {
 $("#login").on("click", function() {
     firebase.auth().signInWithRedirect(provider);
 
-})
+    var loginObj = {
+    name: displayName,
+    time: firebase.database.ServerValue.TIMESTAMP
+  };
+
+  console.log(loginObj);
+
+  loginData.push(loginObj);
+
+});
 
 $("#logout").on("click", function() {
     firebase.auth().signOut().then(function() {
