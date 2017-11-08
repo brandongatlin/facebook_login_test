@@ -21,7 +21,7 @@ var loginData = database.ref("/logins");
 
 var provider = new firebase.auth.FacebookAuthProvider();
 
-firebase.auth().signInWithRedirect(provider);
+// firebase.auth().signInWithRedirect(provider);
 
 firebase.auth().getRedirectResult().then(function(result) {
   if (result.credential) {
@@ -51,5 +51,10 @@ firebase.auth().signOut().then(function() {
 }).catch(function(error) {
   // An error happened.
 });
+
+$("#login").on("click", function() {
+	firebase.auth().signInWithRedirect(provider);
+
+})
 
 
