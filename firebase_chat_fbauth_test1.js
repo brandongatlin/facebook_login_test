@@ -33,7 +33,8 @@ firebase.auth().getRedirectResult().then(function(result) {
         displayName = result.user.displayName
 
         console.log(displayName)
-                console.log("connected to Facebook")
+        console.log("connected to Facebook")
+        $("#displayNameTest").append(displayName)
 
 
         var loginObj = {
@@ -74,7 +75,6 @@ firebase.auth().getRedirectResult().then(function(result) {
 
 $("#login").on("click", function() {
     firebase.auth().signInWithRedirect(provider);
-    $("#displayNameTest").append(displayName)
 
     
 
